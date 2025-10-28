@@ -54,6 +54,7 @@ vim ./zabbix_agent2.conf
 - Добавить файл конфигурации psk:
 ```
 touch /etc/zabbix/zabbix-agent2.d/tls.conf
+vim /etc/zabbix/zabbix-agent2.d/tls.conf
 # Inside add configuration
 TLSConnect=psk
 TLSAccept=psk
@@ -66,4 +67,4 @@ TLSPSKFile=/etc/zabbix/tls.psk
 - Автозапуск агента `systemctl enable zabbix-agent2.srevice`
 
 # Шаг 7: Конфигурация хоста со стороны сервера Zabbix
-Сконфигурировать хост в веб-интерфейсе Zabbix, добавив psk шифрование
+Сконфигурировать хост в веб-интерфейсе Zabbix, добавив psk шифрование, шаблон netmath_monitor, а также стандартные шаблоны для Linux по образцу сконфигурированных хостов.
