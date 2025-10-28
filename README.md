@@ -51,5 +51,19 @@ vim ./zabbix_agent2.conf
 # Шаг 5: Конфигурация PSK на хосте
 - Создать файл с ключом шифрования `touch /etc/zabbix/tls.psk`; `echo <key> > /etc/zabbix/tls.psk`
 - Изменить полномочия файла с ключом `chmod 400 /etc/zabbix/tls.psk`; `chown zabbix:zabbix /etc/zabbix/tls.psk`
+- Добавить файл конфигурации psk:
+```
+touch /etc/zabbix/zabbix-agent2.d/tls.conf
+# Inside add configuration
+TLSConnect=psk
+TLSAccept=psk
+TLSPSKIdentity=<psk_id>
+TLSPSKFile=/etc/zabbix/tls.psk 
+```
 
 # Шаг 6: Запуск агента
+- Запуск агента `systemctl start zabbix-agent2.service`
+- Автозапуск агента `systemctl enable zabbix-agent2.srevice`
+
+# Шаг 7: Конфигурация хоста со стороны сервера Zabbix
+Сконфигурировать хост в веб-интерфейсе Zabbix, добавив psk шифрование
