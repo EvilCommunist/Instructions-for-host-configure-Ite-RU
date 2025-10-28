@@ -49,3 +49,7 @@ vim ./zabbix_agent2.conf
 - Растиражировать файл `/etc/sudoers/grzabbix` с сконфигурированной системы, изменив `SID`, `sidadm` и `NR` при необходимости
 
 # Шаг 5: Конфигурация PSK на хосте
+- Создать файл с ключом шифрования `touch /etc/zabbix/tls.psk`; `echo <key> > /etc/zabbix/tls.psk`
+- Изменить полномочия файла с ключом `chmod 400 /etc/zabbix/tls.psk`; `chown zabbix:zabbix /etc/zabbix/tls.psk`
+
+# Шаг 6: Запуск агента
