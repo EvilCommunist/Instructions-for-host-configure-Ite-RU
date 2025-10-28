@@ -36,4 +36,16 @@ vim ./zabbix_agent2.conf
 - Заменить после `Server=127.0.0.1` на IP Zabbix proxy
 - Заменить поле `# ListenPort=10050` на `ListenPort=10055`
 - Закомментировать `ServerActive=127.0.0.1`
-- Заменить `Hostname=Zabbix server` на значение из таблицы
+- Заменить `Hostname=Zabbix server` на значение из таблицы (либо на значение из команды `hostname -f`)
+
+# Шаг 4: Перенос программы netmath на хост и настройка прав
+- Через WinSCP перенести программу в предварительно созданную `mkdir zabbix_dir` субдиректорию пользователя plNNNN
+- Создать директорию для программы `mkdir usr/sbin/zabbix-agent2-plugin`
+- Перенести netmath в директорию `usr/sbin/zabbix-agent2-plugin`, например, из созданной субдиректории `mv` или `cp ./zabbix-agent2-plugin-netmath usr/sbin/zabbix-agent2-plugin/`
+- Изменить полномочия программы `chmod 755 usr/sbin/zabbix-agent2-plugin/zabbix-agent2-plugin-netmath`
+- Перейти в директорию `cd /etc/zabbix/zabbix_agent2.d/plugins.d/` и скопировать в неё необходимые UserParameters.conf-файлы по образцу из сконфигурированной системы
+- Изменить `SID` и `NR` в `netmath.conf` при необходимости
+- Обновить дату изменения всех *.conf файлов с помощью команды `touh <filename>`
+- Растиражировать файл `/etc/sudoers/grzabbix` с сконфигурированной системы, изменив `SID`, `sidadm` и `NR` при необходимости
+
+# Шаг 5: Конфигурация PSK на хосте
