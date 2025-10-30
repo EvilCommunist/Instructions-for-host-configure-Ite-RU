@@ -64,7 +64,7 @@ TLSPSKFile=/etc/zabbix/tls.psk
 
 # Шаг 6: Запуск агента
 - Запуск агента `systemctl start zabbix-agent2.service`
-- Автозапуск агента `systemctl enable zabbix-agent2.srevice`
+- Автозапуск агента `systemctl enable zabbix-agent2.service`
 
 # Шаг 7: Конфигурация хоста со стороны сервера Zabbix
 Сконфигурировать хост в веб-интерфейсе Zabbix, добавив psk шифрование, шаблон netmath_monitor, а также стандартные шаблоны для Linux по образцу сконфигурированных хостов.
